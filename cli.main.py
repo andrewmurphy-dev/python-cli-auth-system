@@ -45,15 +45,22 @@ def menu_home():
                 if password == storage[name]:
                     print("success")
                 else:
-                    print("not successful")
+                    return menu_home() + "menu: not successful"
             else:
-                print("error")
+                return menu_home() + "menu: error"
 
 
         else:
-            print("menu: invalid option")
+            return menu_home() + "menu: invalid option"
+
+         
+         if user_input in ["7" , "abc", '']:
+         return f"{menu_home()} +  sorry your request is wrong , please try again"
+
 
 
 
 menu_home()
+
+
 
