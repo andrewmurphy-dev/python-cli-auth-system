@@ -19,41 +19,28 @@ def menu_home():
 
 
 
+#day 5
+  def registure_user():
+            if user_input == "1":
+                 print("menu: registure selected")
 
-        #sign up !
-        elif user_input == "1":
-            print("menu: registure selected")
-
-            #step 1
-            name = input("make a new username: ")
-            #test 1
-            #user presses enter !
-           if name == "":
+        name = input("make a new username: ")
+        if name == "":
                print("menu: error, try again!!!")
 
-
-
-            #test 2 registuring a user that already exists!
-
-            elif name in storage:
+        elif name in storage:
             print("username is already taken! try again!")
 
+        password = input("Enter your new password: ")
 
-
-
-            password = input("Enter your new password: ")
-            #test 1
-            if password == "":
+        if password == "":
                print("menu: password cannot be blank!, try again!!!")
-               ret
 
-            #test 2
-
-            elif password in storage:
+        elif password in storage:
                 print("menu: password is already taken! try again!")
 
-             else:
-                 print("menu: thank you for signing up!")
+        else:
+             print("menu: thank you for signing up!")
 
 
 
@@ -72,39 +59,32 @@ def menu_home():
                 print("menu: not successful, try again!!!")
 
 
-        #login
-        elif  user_input == "2":
+    def login_user():
+        if  user_input == "2":
             print("menu: login selected")
             name = input("username: ")
             #test 1 login already exists !
-            if name not in storage:
+        if name not in storage:
                 print("menu: username does not exist, try again!")
                 #test 2 menu cannot be blank!
-            elif name == "":
+        elif name == "":
                 print("menu: username cannot be blank, try again!")
 
-            password = input("password: ")
+        password = input("password: ")
             #test 1
-            if password == "":
+        if password == "":
                 print("menu: password cannot be blank, try again!")
-            elif password not in storage:
+        elif password not in storage:
                 print("menu: password does not exist, try again!")
 
 
-            storage[name] = password
+        storage[name] = password
             #below is day 3
             if name in storage:
                 if password == storage[name]:
                     print("success")
 
 
-
-
-
-
-
-
 menu_home()
-
 
 
