@@ -2,10 +2,8 @@ from auth import registure_user, login_user
 
 
 def menu_home():
-
     name = input("Enter your name: ")
-
-
+    
     while True:
       menu = (f"menu: hello {name} welcome to main menu, type '1', to enter registure as a new user, type '2' to login! type 'bye' to exit the menu! ")
       print(menu)
@@ -21,9 +19,6 @@ def menu_home():
       if user_input == "2":
         print("menu: login selected")
         login_user()
-
-
-
 
 
 
