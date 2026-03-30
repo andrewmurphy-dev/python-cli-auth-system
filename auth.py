@@ -1,7 +1,6 @@
 from storage import storage
 
 
-#below is the signup !
 
 
 def registure_user():
@@ -24,10 +23,10 @@ def registure_user():
     else:
         print("menu: thank you for signing up!")
 
-        storage[name] = password # this calls ot the storage !
+        storage[name] = password 
         print(storage)
 
-#below is questionable !
+
     if name in storage:
         if password == storage[name]:
                print("menu: success")
@@ -36,8 +35,6 @@ def registure_user():
 
 
 
-
-#below is the login !
 
 
 def login_user():
