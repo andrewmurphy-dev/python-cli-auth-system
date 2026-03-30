@@ -286,7 +286,4 @@ This project is part of a structured Python learning roadmap focused on building
 
 The long-term goal is to progress from simple scripts toward more advanced backend development and software engineering concepts.
 
-```
 
-Small correction: replace `yourusername` in the clone link with your actual GitHub username.
-```
