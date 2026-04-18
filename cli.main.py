@@ -1,28 +1,41 @@
 from auth import registure_user, login_user
 
 
-def menu_home():
-    name = input("Enter your name: ")
-    
+def menu_home() -> None:
+    """displays main menu and handles user navigation"""
     while True:
-      menu = (f"menu: hello {name} welcome to main menu, type '1', to enter registure as a new user, type '2' to login! type 'bye' to exit the menu! ")
-      print(menu)
-      user_input = input("type :")
-      if user_input == "bye":
-            print("menu: goodbye")
+        print("welcome to main menu")
+        print("type to choose your option")
+
+
+        print("press 1: register a new user")
+        print("press 2: login")
+        print("press: 'exit' logout")
+
+        option = input("type to choose: ").lower().strip()
+
+        if option == "":
+            print("error, cannot be blank, please try again")
+            continue
+
+        elif option == "1":
+            print("menu: registure selected")
+            registure_user()
+
+        elif option == "2":
+            print("menu: login selected")
+            login_user()
+
+        elif option == "exit":
             break
 
-      if user_input == "1":
-        print("menu: registure selected")
-        registure_user()
-
-      if user_input == "2":
-        print("menu: login selected")
-        login_user()
+        else:
+            print("error, try again")
 
 
 
-menu_home()
-registure_user()
-login_user()
+
+
+if __name__ == "__main__":
+    menu_home()
 
