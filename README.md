@@ -1,14 +1,34 @@
+# 🔐 Python CLI Authentication System
 
-# Python CLI Authentication System
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-A simple command-line authentication system built while learning Python fundamentals.
+A simple Python CLI-based authentication system that allows users to register, log in, and interact with a menu-driven interface.
 
-This project simulates a small **user registration and login system** using a command-line interface (CLI). The goal of the project is to practice core programming concepts such as program flow, input handling, validation logic, and basic data storage.
-
-The system allows users to register accounts, log in, and interact with a menu-based interface that runs continuously until the user exits.
+This project was built to practice core backend concepts such as input validation, control flow, modular design, and dictionary-based data storage.
 
 ---
 
+## 🚀 Features
+
+- User registration system
+- User login system
+- Username validation (no duplicates, no empty input)
+- Password validation (non-empty)
+- Error handling for invalid input
+- Continuous CLI menu loop
+- Modular code structure (separated logic)
+
+---
+
+## 📦 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/python-cli-auth-system.git
+cd python-cli-auth-system
 ## Features
 
 Current functionality includes:
