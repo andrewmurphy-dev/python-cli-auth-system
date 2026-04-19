@@ -3,35 +3,36 @@ from storage import storage
 
 
 
-def registure_user():
-
-
-    name = input("make a new username: ")
-    if name == "":
-        print("menu: error, try again!!!")
-
-    elif name in storage:
-        print("username is already taken! try again!")
-
-    password = input("Enter your new password: ")
-    if password == "":
-        print("menu: password cannot be blank!, try again!!!")
-
-    elif password in storage:
-        print("menu: password is already taken! try again!")
-
-    else:
-        print("menu: thank you for signing up!")
-
-        storage[name] = password 
-        print(storage)
-
-
+def is_valid_username(name, storage):
+    if not name:
+        print("Error: username cannot be empty.")
+        return False
     if name in storage:
-        if password == storage[name]:
-               print("menu: success")
-        else:
-            print("menu: not successful, try again!!!")
+        print("Username already taken.")
+        return False
+    return True
+
+def is_valid_password(password):
+    if not password:
+        print("Error: password cannot be empty.")
+        return False
+    return True
+
+def register_user(storage):
+    """Register a new user by prompting for a unique username and password."""
+    while True:
+        name = input("Enter a username: ").lower().strip()
+        if not is_valid_username(name, storage):
+            continue
+
+        password = input("Enter a password: ").strip()
+        if not is_valid_password(password):
+            continue
+
+        storage[name] = password
+        print("Signed up successfully!")
+        return
+
 
 
 
