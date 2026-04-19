@@ -34,32 +34,47 @@ def register_user(storage):
         return
 
 
+def login_name_validation(name, storage):
+    """Validate a username"""
+    if not name:
+        print("Error: username cannot be empty.")
+        return False
+
+    if not name in storage:
+        print("Error: username does not exist, try again!")
+        return False
+    return True
+
+
+def password_validation(password):
+    """Validate a password"""
+    if not password:
+        print("Error: password cannot be blank, try again!")
+        return False
+    return True
 
 
 
 
-def login_user():
 
 
-    name = input("username: ")
-    if name not in storage:
-        print("menu: username does not exist, try again!")
+def login_user(name, password):
+    """login a user"""
+    while True:
+        name = input("login name: ")
+        if not login_name_validation(name, storage):
+            continue
 
-    elif name == "":
-        print("menu: username cannot be blank, try again!")
+        password = input("login password: ")
+        if not password_validation(password):
+            continue
 
-    password = input("password: ")
-    if password == "":
-        print("menu: password cannot be blank, try again!")
+        storage[name] = password
+        if name in storage:
+            if password == storage[name]:
+                print("success, you have logged in successfully!")
+                return
 
-    elif password not in storage:
-        print("menu: password does not exist, try again!")
-
-
-    storage[name] = password
-    if name in storage:
-        if password == storage[name]:
-            print("success")
 
 
 
