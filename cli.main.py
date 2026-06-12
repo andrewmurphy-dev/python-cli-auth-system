@@ -25,29 +25,34 @@ def menu_home() -> None:
             print("error, cannot be blank, please try again")
             continue
 
+        if option_text == "exit":
+            print("Thank you: Goodbye!")
+            break 
+
+       
         try:
             option = int(option_text)
         except ValueError:
             print("error the choice must be a number!")
+            continue 
 
 
-        if option == "1":
+        if option == 1:
             print("menu: signup selected")
             register_user(users)
 
-        elif option == "2":
+        elif option == 2:
             print("menu: login selected")
             login_user(users)
 
-        elif option == "3":
+        elif option == 3:
             print("menu: show users selected")
             show_users(users)
 
-        elif option == "exit":
-            break
-
         else:
-            print("error, try again")
+            print("invalid input")
+            
+
 
 
 
