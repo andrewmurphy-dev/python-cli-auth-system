@@ -1,7 +1,7 @@
 from fastapi import APIRouter 
 
 
-router = APIRouter(prefix="/menu", tags=["menu"])
+router = APIRouter(prefix="/users", tags=["users"])
 
 
 
@@ -15,5 +15,5 @@ fake_users = {
 
 
 @router.get("")
-def menu():
+def get_users():
     return fake_users 
