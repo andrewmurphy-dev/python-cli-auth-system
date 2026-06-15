@@ -1,3 +1,5 @@
+from fastapi import requests
+from app.api.routers import users
 from app.cli.ui import square_box
 from app.core.storage import save_cli
 
@@ -83,12 +85,47 @@ def login_user(users):
 
 
 
+def show_users():
+
+    try:
+        response = requests.get(f"{BASE_URL}/users", timeout=10)
 
 
-def show_users(users):
-    """Show registered users inside the square box."""
-    square_box("User Data", users)
+        response.raise_for_status()  # Check if the request was successful
+        users = response.json()
+        #above is the list of dicts ``
 
+
+        for user in users:
+            print(f"ID: {user['id']} | Name: {user['name']} | Password: {user['password']}")
+
+
+
+    except requests.exceptions.ConnectionError:
+        print("Error: Unable to connect to the server. Please ensure the API is running.")
+        return 
+            
+    except requests.exceptions.HTTPError as error:
+        print(f"HTTP error occurred: {error}")
+        return
+    
+    except requests.exceptions.Timeout:
+        print("Error: The request timed out. Please try again later.")
+        return
+    
+    except requests.exceptions.RequestException:
+        print("An error occurred while fetching users. Please try again later.")
+        return
+    
+    except ValueError:
+        print("Error: Received an invalid response from the server.")
+        return
+    
+
+
+
+
+    
 
 
 
