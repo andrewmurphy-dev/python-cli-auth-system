@@ -8,13 +8,14 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 
 #so we need fake data ! 
-fake_users = {
-    "id": 1,
-    "name": "Andrew",
-    "password": 454563378,
-    "created_at": 
-}
-
+fake_users = [
+    {
+        "id": 1,
+        "username": "andrew",
+        "email": "test@test.com",
+        "created_at": "2026-06-16T00:00:00+09:00",
+    }
+]
 
 
 @router.get("")
@@ -54,12 +55,12 @@ def create_user():
 
     new_user = {
         "id": new_id,
-        "name": "andrew"
-        "password": "15267252"
+        "name": "andrew",
+        "password": "15267252",
         "created_at": current_japan_time()
 
     }
 
     fake_users.appemd(new_user)
 
-    return new_user 
+    return new_user
