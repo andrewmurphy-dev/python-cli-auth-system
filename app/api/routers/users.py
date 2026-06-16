@@ -1,9 +1,15 @@
-from fastapi import APIRouter 
+from fastapi import APIRouter, HTTPException
 from datetime import datetime
-from zoneinfo import ZoneInfo 
+from zoneinfo import ZoneInfo
+from pydantic import BaseModel, Field
+
 
 
 router = APIRouter(prefix="/users", tags=["users"])
+
+class CreateStructure(BaseModel):
+    name: str = Field(minlength=3)
+    password: str = Field(minlength=4)
 
 
 
@@ -33,8 +39,8 @@ def new_user_id():
     largest_user_id = 0 
     
     for user in fake_users:
-        if fake_users["id"] > largest_user_id:
-            largest_user_id = fake_users["id"]
+        if user["id"] > largest_user_id:
+            largest_user_id = user["id"]
 
         
     return largest_user_id + 1 
@@ -61,6 +67,12 @@ def create_user():
 
     }
 
-    fake_users.appemd(new_user)
+    fake_users.append(new_user)
 
     return new_user
+
+
+
+@router.post("/login")
+def login(request: CreateStructure):
+    return {"message": "login successful!"}
