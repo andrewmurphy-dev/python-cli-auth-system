@@ -1,0 +1,73 @@
+so lets plan how to implement login user api!
+
+
+lets first do the endpoint!
+
+
+
+
+so we need to import pydamtic class 
+
+
+
+class CreateStructure(Basemodel):
+     name: str = Field(MinLength=2)
+     password: str = Field(MinLength=4)
+
+
+
+
+
+
+
+so what do we want the request to do ?
+
+
+so we want to ask the user:
+
+name 
+
+password 
+
+
+and from there we just send a request
+
+
+
+
+
+what do we want the endpoint to do ?
+
+
+validate it ! 
+if its in the data !
+
+we return "success"
+
+if its wrong 
+we return "error: invalid login"
+
+
+
+
+
+so what method should we do ? 
+
+i guess we use post?
+
+cause we are sending data 
+
+
+#but remember in the endpoint we must call the data ! 
+the data in storage ! 
+
+
+so lets think logically , do we call the data which is json.dump or json.load ? 
+
+so i think we call load ! 
+as it is login user ! 
+it stores there data 
+
+
+see what i am confused about is how we should structure our http requests post request ! 
+
