@@ -1,0 +1,36 @@
+so how am i going to implement sign up 
+
+
+we make a function 
+we ask the user for a name 
+validate it , strip it too. 
+
+we ask the user for a password
+this will be in a string 
+my reasoning is that we want it to stay as a string , i think this is fine!
+as we are not calculating 
+
+we send a POST request 
+
+
+try
+
+request = response.post(f"{BASE_URL}/user", timeout=10,
+json=dict)
+
+
+see what i am confused is what obkect are we sending the request ! 
+
+so we have to 
+
+json={"name": name, "password": password}
+
+
+there is two ways we can do this !
+
+make a dictionary 
+
+and do this 
+json=dict_to_save
+
+requests.exceptions.ConnectionError

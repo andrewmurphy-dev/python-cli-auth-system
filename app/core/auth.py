@@ -1,87 +1,69 @@
 from fastapi import requests
-from app.api.routers import users
-from app.cli.ui import square_box
-from app.core.storage import save_cli
 
 
+BASE_URL = "http://localhost:8000"
 
-def is_valid_username(name, users):
+
+def signup_user():
+    print()
+    print("welcome to signup page!")
+
+    name = input("enter a username: ").lower().strip()
+
     if name == "":
-        print("error, cannot be empty!")
-        return False
-    if name in users:
-        print("Username already taken.")
-        return False
-    return True
-
-def is_valid_password(password):
-    if password == "":
-        print("error password cannot empty!")
-        return False
-    return True
-
-def register_user(users):
-    """Register a new user by prompting for a unique username and password."""
-    while True:
-        name = input("Enter a username: ").lower().strip()
-        if not is_valid_username(name, users):
-            continue
-
-        password = input("Enter a password: ").strip()
-        if not is_valid_password(password):
-            continue
-
-        users[name] = password
-        save_cli(users)
-
-        print("you have signed up! Thank you!")
+        print("Error: username cannot be empty, try again!")
         return
+    
+    password = input("enter a password: ").strip()
+    if password == "":
+        print("Error: password cannot be empty, try again!")
+        return
+    
+    dict_to_save = {"name": name, "password": password}
+    
+    try:
+        response = requests.post(f"{BASE_URL}/users", json=dict_to_save, timeout=10)
 
+        response.raise_for_status()  # Check if the request was successful, this will communicate with the API endpoint and raise an error if the response status code indicates a failure (4xx or 5xx).
+        #basically its , is the status code an error code? if yes, raise an error and handle it in the except block, if not, continue to the next line of code
+        #its checking the requests , checks the HTTP status code 
+        #if the status code is successful ots 200, OK , 201 created, 204 no content, then it will continue to the next line of code, which is to parse the response as JSON and print the message from the response.
+        #if there is an error in the status code , it will raise an HTTPError
+        data = response.json() #response from the endpoint
+        print(data["message"])
 
+    except requests.exceptions.ConnectionError:
+        print("Error: Unable to connect to the server. Please ensure the API is running.")
+        return
+    
+    except requests.exceptions.HTTPError as error:
 
-
-
-
-def login_name_validation(name, users):
-    """Validate a username"""
-    if not name:
-        print("Error: username cannot be empty.")
-        return False
-
-    if not name in users:
-        print("Error: username does not exist, try again!")
-        return False
-    return True
-
-
-def password_validation(password):
-    """Validate a password"""
-    if not password:
-        print("Error: password cannot be blank, try again!")
-        return False
-    return True
-
-
-
-
-
-
-def login_user(users):
-    """login a user"""
-    while True:
-        name = input("login name: ")
-        if not login_name_validation(name, users):
-            continue
-
-        password = input("login password: ")
-        if not password_validation(password):
-            continue
-
-        if password == users[name]:
-            print("success you have login successfully!")
+        try:
+            error_data = response.json()
+            print(error_data.get("message", "username already exists, please try again with a different username!"))
+            #we are using get to get the actual message response from the API !
+            return 
+        except ValueError:
+            print(f"HTTP error occurred: {response.raise_for_status()}")
             return
+    
+    except requests.exceptions.Timeout:
+        print("Error: The request timed out. Please try again later.")
+        return
+    
+    except requests.exceptions.RequestException:
+        print("An error occurred while signing up. Please try again later.")
+        return
+    
+    except ValueError:
+        print("Error: Received an invalid response from the server.")
+        return
+    
 
-        print("error, please try again!")
+
+
+
+
 
 
 
