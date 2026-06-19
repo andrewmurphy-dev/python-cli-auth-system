@@ -1,0 +1,42 @@
+so today we are going to plan 
+
+--what am i buidling?
+
+I am refactoring show_users so it keeps the same result, but the code is split into smaller, clearer functions.
+
+--what behavior should change ?
+
+right now everything is in one function 
+this is sloppy
+
+i want to change this into neat seperate functions 
+
+right now 
+
+it sends the http request 
+checks for errors 
+converts response to json 
+loops though each user 
+prints each user 
+
+
+
+after 
+
+send a request to GET / users 
+recieve users from the backend 
+print each users ID, name , password 
+show clear error messages if something goes wrong 
+
+so the code should be split into clearer functions 
+
+-what should change ?
+the structure layout , it should be seperate functions ! 
+
+function to send http request , def_show_users_get()
+
+function once it reieves the data , loop over it and show it 
+
+function to handle http error request 
+
+function to show the data 
