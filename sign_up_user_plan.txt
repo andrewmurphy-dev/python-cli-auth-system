@@ -1,0 +1,38 @@
+plan 
+
+what am i building?
+
+i am refactoring signup user so it keeps the same result
+ but the code is split into smaller, clearer functions.
+
+
+ what behavior should change ?
+
+ everything is very sloppy 
+everything is in one function ! 
+
+right now 
+
+we ask the user for a name
+we ask for a password 
+we put the password , name into the dict 
+we send a http request ! 
+
+after 
+
+
+
+
+-- what should change ?
+
+- one function asks for the username -
+- one function asks for the password -
+- one function builds the signup dictionary -
+- one function sends the POST request -
+- one function validates the response -
+- one function parses the response JSON - 
+- one function prints the success message - 
+- one function handles HTTP errors
+- signup_user controls the whole flow
+
+
