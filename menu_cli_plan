@@ -1,0 +1,54 @@
+so today we are going to refacor the main menu of the authification system ! 
+
+
+what behavior should change ?
+
+everything is in one function 
+there is some validation mistakes 
+for example
+
+
+for option_text 
+if the user makes a space ?
+refactor the "" 
+if the user types >=3 or < 1 it shows no error 
+
+
+we convert the option text to an integer ! 
+but we dont validate the number > or < than the range
+
+
+after 
+
+so we should have a while true loop only looping !
+this will be the main function , we need option text to continously loop !
+so it makes sense to have them together ! 
+
+
+i think we should have different levels of validation 
+
+- input data validation - users 
+option_text validation 
+
+options should all go through the same form of validation so we should make a single function for this! and just call it 
+
+so my only confusion is why do we do it twice
+
+exit the function 
+
+its like broken into two parts 
+
+if option_text == "exit":
+    return "exit"
+
+
+the user typed exit , tell the main menu 
+
+
+once inside the main menu ! 
+
+its broken ! 
+
+if option == "exit":
+    print("Thank you: Goodbye!")
+    break

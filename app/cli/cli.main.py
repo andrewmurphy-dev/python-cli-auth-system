@@ -1,57 +1,68 @@
 from app.core.storage import load_cli
-from app.core.auth import register_user, login_user, show_users
-from app.cli.ui import square_box
+from app.core.auth import sign_up, show_users
 
 
 
-def menu_home() -> None:
-    """displays main menu and handles user navigation"""
+
+def option_validation():
+
+    option_text = input("Enter your choice: ").strip() 
+
+    if option_text is None:
+        print("Error: option cannot be empty, try again!")
+        return None
+    
+    if option_text == "exit":
+        print("Exiting the program...")
+        return "exit"
+    
+    try:
+        option = int(option_text)
+    
+    except ValueError:
+        print("Error: option must be a number, try again!")
+        return None
+    
+    if option < 1 or option > 3:
+        print("Error: option must be between 1 and 3, try again!")
+        return None
+    
+    return option
+
+
+
+def menu_home():
+
     users = load_cli()
 
     if users is None:
+        print("Error: no users found, please register a user first!")
         return
-
+    
     while True:
-        square_box("Main Menu", [
-            "1. Register a new user",
-            "2. Login",
-            "3. Show users",
-            "type exit Logout"
-        ])
+        square_box("Welcome to the CLI App")
+        print("1. Register a new user")
+        print("2. Login as an existing user")
+        print("3. Show all users")
+        print("Type 'exit' to quit the program")
 
-        option_text = input("Type to choose: ").strip()
+        option = option_validation()
 
-        if option_text == "":
-            print("error, cannot be blank, please try again")
+        if option is None:
             continue
-
-        if option_text == "exit":
-            print("Thank you: Goodbye!")
-            break 
-
-       
-        try:
-            option = int(option_text)
-        except ValueError:
-            print("error the choice must be a number!")
-            continue 
-
+        
+        if option == "exit":
+            print("Thank you for using the CLI App. Goodbye!")
+            break
 
         if option == 1:
-            print("menu: signup selected")
-            register_user(users)
-
+            sign_up()
+        
         elif option == 2:
-            print("menu: login selected")
-            login_user(users)
-
+            login_user()
+        
         elif option == 3:
-            print("menu: show users selected")
-            show_users(users)
-
-        else:
-            print("invalid input")
-            
+            show_users()
 
 
 
