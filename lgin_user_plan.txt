@@ -1,0 +1,52 @@
+so today we are going to implement login user !
+
+
+for some reason there is no login user !
+
+
+- so we need to ask the user for a name 
+
+- we need to ask the user for a password 
+
+- we need to make a function for sending a request , this will be a post request ! 
+
+- the structure of the post needs to be a dicitonary
+
+- login = {
+    "name": name,
+    "password": password
+}
+
+
+- so now we need a function to send a request to the endpoint 
+
+
+- we need to parse the response of the endpoint 
+
+- print the message 
+
+- validate the request 
+
+- we need the main function 
+
+so what will the main function do ?
+
+so 
+
+make a pinter for username 
+
+make a pointer for pasword 
+
+make a pinter for the dicitonary 
+
+______________________________________
+
+we need to use try 
+
+pointer for sending the request 
+call validation for the reqyest 
+
+pointer for the response
+call the print _response _function 
+
+

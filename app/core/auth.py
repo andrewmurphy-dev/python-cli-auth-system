@@ -128,10 +128,115 @@ def sign_up():
 
 
 
+
+def login_username():
+
+    username = input("enter your login username: ").lower().strip()
+
+    if username is None:
+        print("username cannot be empty!")
+        return None
+    
+    if len(username) < 3:
+        print("username is too short!")
+        return None
+    
+    if len(username) > 14:
+        print("username is too long try again!")
+        return None 
+    
+    return username 
+
+
+def login_password():
+
+    password = input("enter your username login password: ").strip() 
+
+    if password is None:
+        print("password cannot be empty!")
+        return None 
+    
+    if len(password) < 3:
+        print("password is too short")
+        return None
+    
+    if len(password) > 14:
+        print("password is too long")
+        return None 
+    
+    return password 
+
+
+
+
+def login_structure(name, password):
+
+    login = {
+        "name": name,
+        "password": password,
+    }
+    return login 
+
+
+def login_post_request(login):
+    response = requests.post(f"{BASE_URL}/login", json=login, timeout=10)
+    return response 
+
+
+
+
+def parse_login_response(response):
+    data = response.json()
+    return data 
+
+
+def show_login_message(data):
+    print(data["message"])
+
+
+def validate_login_response(response):
+    response.raise_for_status() 
+
+
+def login_user():
+    print()
+    print("welcome to login page!")
+
+    username = login_username()
+
+    if username is None:
+        return 
+    
+    password = login_password()
+
+    if password is None:
+        return 
     
 
+    login = login_structure()
 
+    
 
+    try:
+        response = login_post_request(login)
+        validate_login_response(response)
+        data = parse_login_response(response)
+        show_login_message(data)
+
+    except requests.exceptions.ConnectionError:
+        print("Error: Unable to connect to the server. Please ensure the API is running.")
+    
+    except requests.exceptions.Timeout:
+        print("Error: The request timed out. Please try again later.")
+
+    except requests.exceptions.HTTPError as error:
+        handle_http_error(error)
+
+    except requests.exceptions.RequestException:
+        print("An error occurred while signing up. Please try again later.")
+
+    except ValueError:
+        print("Error: Received an invalid response from the server.")
 
 
 
