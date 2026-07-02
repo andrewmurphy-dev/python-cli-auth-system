@@ -133,7 +133,7 @@ def login_username():
 
     username = input("enter your login username: ").lower().strip()
 
-    if username is None:
+    if not username:
         print("username cannot be empty!")
         return None
     
@@ -152,11 +152,11 @@ def login_password():
 
     password = input("enter your username login password: ").strip() 
 
-    if password is None:
+    if not password:
         print("password cannot be empty!")
         return None 
     
-    if len(password) < 3:
+    if len(password) < 6:
         print("password is too short")
         return None
     
@@ -179,7 +179,7 @@ def login_structure(name, password):
 
 
 def login_post_request(login):
-    response = requests.post(f"{BASE_URL}/login", json=login, timeout=10)
+    response = requests.post(f"{BASE_URL}/users/login", json=login, timeout=10)
     return response 
 
 
@@ -213,7 +213,7 @@ def login_user():
         return 
     
 
-    login = login_structure()
+    login = login_structure(username, password)
 
     
 
@@ -386,7 +386,6 @@ def handle_http_error(error):
 
 
     
-
 
 
 
