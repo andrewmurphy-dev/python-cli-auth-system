@@ -1,5 +1,6 @@
 from app.core.storage import load_cli
-from app.core.auth import sign_up, show_users
+from app.core.auth import login_user, sign_up, show_users
+from app.cli.ui import square_box
 
 
 
@@ -40,11 +41,15 @@ def menu_home():
         return
     
     while True:
-        square_box("Welcome to the CLI App")
-        print("1. Register a new user")
-        print("2. Login as an existing user")
-        print("3. Show all users")
-        print("Type 'exit' to quit the program")
+        square_box(
+            "Welcome to the CLI App",
+            [
+                "1. Register a new user",
+                "2. Login as an existing user",
+                "3. Show all users",
+                "Type 'exit' to quit the program",
+            ],
+        )
 
         option = option_validation()
 
@@ -71,4 +76,3 @@ def menu_home():
 
 if __name__ == "__main__":
     menu_home()
-
