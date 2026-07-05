@@ -5,11 +5,6 @@ from app.main_api import app
 
 client = TestClient(app)
 
-#so lets test GET / users 
-
-
-#so the function we call is the response function 
-
 
 
 def test_get_users_response_list():
@@ -20,8 +15,6 @@ def test_get_users_response_list():
     
 
 
-#so here we can test the endpoint response resturns successful data! 
-#response
 
 def test_get_users_response_format():
     response = client.get("/users")
@@ -38,34 +31,7 @@ def test_get_users_response_format():
 
 
 
-#so lets try test router.post("/users")
-
-
 def test_post_users_response_format():
-    response = client.post("/users")
-    data = response.json()
-
-    assert response.status_code == 200
-
-    assert set(data.keys()) == {"message", "user"}
-
-    assert isinstance(data["message"], str)
-    assert isinstance(data["user"], new_user)
-
-
-    #see how can we check the type for new_user 
-    #so new_user is a dict
-
-
-    #two issues 
-
-
-    #1
-
-    #your request exprects a json body ! 
-
-    #so we need to do this ! 
-
     response = client.post("/users", json={
         "name": "testuser",
         "password": "secret134"
@@ -89,5 +55,20 @@ def test_post_users_response_format():
     assert isinstance(user["password"], str)
 
 
-    
+
+
+
+
+def test_post_request_login():
+    response = client.post("/login", json={
+        "name": "testlogin",
+        "password": "passwordlogin"
+    })
+
+    data = response.json()
+
+    assert response.status_code == 200
+    assert isinstance(data["message"], str)
+
+
 
