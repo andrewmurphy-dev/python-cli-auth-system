@@ -19,7 +19,7 @@ engine = create_engine(
 
 SessionLocal = sessionmaker(
     bind=engine,
-    sutoflush=False,
+    autoflush=False,
     autocommit=False,
 )
 
