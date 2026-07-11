@@ -1,8 +1,10 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from pydantic import BaseModel, Field
-
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+from app.db import get_db
 
 
 router = APIRouter(prefix="/users", tags=["users"])
@@ -24,26 +26,26 @@ fake_users = [
 ]
 
 
+
 @router.get("")
-def get_users():
-    return fake_users 
+def get_users(db: Session = Depends(get_db)):
+    result = db.execute(text("SELECT id, name, password, created_at, FROM users"))
+    rows = result.mapping().all()
+
+    users = []
+
+    for row in rows:
+        users.append({
+            "id": row["id"],
+            "name": row["name"],
+            "password": row["password"],
+            "created_at": int(row["created_at"].timestamp()),
+        })
+
+    return users
 
 
 
-
-
-def new_user_id():
-    if not fake_users:
-        return 1 
-    
-    largest_user_id = 0 
-    
-    for user in fake_users:
-        if user["id"] > largest_user_id:
-            largest_user_id = user["id"]
-
-        
-    return largest_user_id + 1 
 
 
 
@@ -53,6 +55,11 @@ JAPAN_TIMEZONE = ZoneInfo("Asia/Tokyo")
 
 def current_japan_time():
     return datetime.now(JAPAN_TIMEZONE).isoformat()
+
+
+
+
+
 
 
 @router.post("")
